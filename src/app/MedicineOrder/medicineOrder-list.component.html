@@ -1,0 +1,144 @@
+<div class="row" style="padding-top: 10px;">
+    <div class="col-lg-11">
+        <input type="text" placeholder="Search for medicine by type or by name" #brandOrName style="width: 100%;">
+    </div>
+    <div class="col-lg-1" style="padding-left: 5px;">
+        <button type="button" class="btn btn-primary btn-sm" (click)="getMedicineByBrandOrName(brandOrName.value)">Search</button>
+    </div>
+</div>
+<div class="row" style="padding-top: 10px;">
+    <div class="col-lg-3" *ngFor="let m of medicineList;let indexOfelement=index;">
+        <div class="card">
+            <div class="card-header">
+                {{m.medicineName}}
+            </div>
+            <div class="card-body">
+                <p class="card-text">Type: {{m.type}}</p>
+                <p class="card-text">Manufacturing Company: {{m.mfgCompany}}</p>
+                <p class="card-text">Manufacturing Date: {{m.mfgDate}}</p>
+                <p class="card-text">Expiry Date: {{m.expDate}}</p>
+                <p class="card-text">Price : {{m.price}}</p>
+                <p class="card-text">Prescription Required: {{m.prescriptionRequired}}</p>
+                <input id="qty{{indexOfelement}}" type=number value=0 min=0 max=5 style="width: 30px;">
+                <button (click)="increment(indexOfelement)">+</button>
+                <button (click)="decrement(indexOfelement)">-</button>&nbsp;&nbsp;
+                <button class="btn btn-sm btn-primary" (click)="addMedicine(m.medicineName,m.type,m.mfgCompany,m.mfgDate,m.expDate,m.price,m.unit,m.prescriptionRequired,m.description,indexOfelement.toString())">
+                    Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3" id="medicineDetails">
+        <div class="card">
+            <div class="card-header">
+                {{medicine.medicineName}}
+            </div>
+            <div class="card-body">
+                <p class="card-text">Type: {{medicine.type}}</p>
+                <p class="card-text">Manufacturing Company: {{medicine.mfgCompany}}</p>
+                <p class="card-text">Manufacturing Date: {{medicine.mfgDate}}</p>
+                <p class="card-text">Expiry Date: {{medicine.expDate}}</p>
+                <p class="card-text">Price : {{medicine.price}}</p>
+                <p class="card-text">Prescription Required: {{medicine.prescriptionRequired}}</p>
+                <input #qty0 type=number value=0 min=0 max=5 style="width: 30px;">
+                <button (click)="increment(0)">+</button>
+                <button (click)="decrement(0)">-</button> &nbsp;&nbsp;
+                <button class="btn btn-sm btn-primary" (click)="addMedicine(medicine.medicineName,medicine.type,medicine.mfgCompany,medicine.mfgDate,medicine.expDate,medicine.price,medicine.unit,medicine.prescriptionRequired,medicine.description,'0')">
+                    Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="row" style="padding-top: 5px;">
+    <div class="col-lg-12">
+        <hr>
+        <h4>Shop By Brands</h4>
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="demo" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/assets/images/brand.png" style="width: 100%;">
+                    <div class="carousel-caption">
+                        <h3>Brand 1</h3>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/assets/images/brand.png" style="width: 100%;">
+                    <div class="carousel-caption">
+                        <h3>Brand 2</h3>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/assets/images/brand.png" style="width: 100%;">
+                    <div class="carousel-caption">
+                        <h3>Brand 3</h3>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+</div>-->
+<div class="row">
+    <div class="col-lg-12">
+        <hr>
+        <h3>COVID-19 Updates</h3>
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="demo2" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo2" data-slide-to="0" class="active"></li>
+                <li data-target="#demo2" data-slide-to="1"></li>
+                <li data-target="#demo2" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="https://www.covid19india.org/" target="_blank">
+                    <img src="/assets/images/statistics.jpg" style="width: 100%;">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>COVID-19 statistics</h3>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html" target="_blank">
+                    <img src="/assets/images/precaution.jpg" style="width: 100%;">
+                </a>
+                    <div class="carousel-caption">
+                        <h3>COVID-19 precautions</h3>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://www.covid19india.org/" target="_blank">
+                    <img src="/assets/images/remedy.jpg" style="width: 100%;">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>COVID-19 Basic Remedies</h3>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#demo2" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo2" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+</div>

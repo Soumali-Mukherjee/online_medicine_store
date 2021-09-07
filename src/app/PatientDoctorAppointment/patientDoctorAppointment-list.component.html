@@ -1,0 +1,403 @@
+<div class="row" style="padding-top: 15px;padding-bottom:15px;">
+    <div class="col-lg-12">
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <button class="btn btn-sm btn-success" type="button" (click)="openPatientReviewModal()">Get Review By Patient ID</button>&nbsp;&nbsp;
+                <button class="btn btn-sm btn-secondary" type="button"  (click)="openDoctorReviewModal()">Get Review By Doctor ID</button>&nbsp;&nbsp;
+                <button class="btn btn-sm btn-success" type="button"  (click)="openviewAppointmentModal()">View Appointment Details</button>&nbsp;&nbsp;
+                <button class="btn btn-sm btn-secondary" type="button" (click)="openPatientDetailModal()">View Patient Details</button>
+            </form>
+        </nav>
+    </div>
+</div>
+<div class="modal" id="getPatientReviewModal" [style.display]="getPatientReviewmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="getPatientReviewLabel">Doctor Review By Patient ID</h5>
+                <button type="button" (click)="closePatientReviewModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-bottom:15px;">
+                    <div class="col-lg-10" style="padding-right: 0px;">
+                        <input type="text" #patientId placeholder="Enter Patient ID" style="width:100%">
+                    </div>
+                    <div class="col-lg-2" style="padding-left: 5px;">
+                        <button class="btn btn-sm btn-primary"
+                            (click)="getPatientReviewByPatientId(patientId.value)">Get Review By
+                            Patient ID</button>
+                    </div>
+                </div>
+                <div class="row" id="reviewTablePatientID" style="padding-bottom:15px;">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered" style="text-align:center;">
+                            <tbody>
+                                <tr>
+                                    <th>Review ID</th>
+                                    <td>{{patientReviewByPatientId.reviewId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Patient ID </th>
+                                    <td>{{patientReviewByPatientId.patient.patientId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Doctor ID</th>
+                                    <td>{{patientReviewByPatientId.doctor.doctorId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{patientReviewByPatientId.description}}</td>
+                                </tr>
+                                <tr>
+                                    <th>rating</th>
+                                    <td>{{patientReviewByPatientId.rating}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="getDoctorReviewModal" [style.display]="getDoctorReviewmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="getDoctorReviewLabel">Doctor review</h5>
+                <button type="button" (click)="closeDoctorReviewModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-bottom:15px;">
+                    <div class="col-lg-10" style="padding-right: 0px;">
+                        <input type="text" #doctorId placeholder="Enter Doctor ID" style="width:100%">
+                    </div>
+                    <div class="col-lg-2" style="padding-left: 5px;">
+                        <button class="btn btn-sm btn-primary" (click)="getPatientReviewByDoctorId(doctorId.value)">Get
+                            Review By
+                            Doctor
+                            ID</button>
+                    </div>
+                </div>
+                <div class="row" id="reviewTableByDoctorID">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered" style="text-align:center;">
+                            <tbody>
+                                <tr>
+                                    <th>Review ID</th>
+                                    <td>{{patientReviewByDoctorId.reviewId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Patient ID </th>
+                                    <td>{{patientReviewByDoctorId.patient.patientId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Doctor ID</th>
+                                    <td>{{patientReviewByDoctorId.doctor.doctorId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{patientReviewByDoctorId.description}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Rating</th>
+                                    <td>{{patientReviewByDoctorId.rating}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="viewAppointmentModal"  [style.display]="viewAppointmentmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewAppointmentModalLabel">View Appointment Details</h5>
+                <button type="button" (click)="closeviewAppointmentModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-bottom:15px;">
+                    <div class="col-lg-10" style="padding-right: 0px;">
+                        <input type="text" placeholder="Search by Patient ID" #patientID style="width: 100%;">
+                    </div>
+                    <div class="col-lg-2" style="padding-left: 5px;">
+                        <button type="button" class="btn btn-sm btn-primary"
+                            (click)="viewAppointmentByPatientId(patientID.value)">View
+                            Appointment</button>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row" style="padding-bottom:15px;">
+                    <div class="col-lg-6" *ngFor="let d of appointmentscheduledetailsList">
+                        <div class="card">
+                            <div class="card-header">
+                                {{d.scheduleId}}
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Doctor ID: {{d.doctor.doctorId}}</p>
+                                <p class="card-text">Doctor Name: {{d.doctor.doctorname}}</p>
+                                <p class="card-text">Doctor Specialization: {{d.doctor.specialization}}</p>
+                                <p class="card-text">Patient ID: {{d.patient.patientId}}</p>
+                                <p class="card-text">Patient Name:{{d.patient.patientName}}</p>
+                                <p class="card-text">Appointment Date: {{d.appointmentDate}}</p>
+                                <p class="card-text">Appointment Time: {{d.appointmentTime}}</p>
+                                <p class="card-text">Status: {{d.status}}</p>
+                                <button type="button" class="btn btn-sm btn-danger"
+                                    (click)="cancelAppointment(d.scheduleId,d.patient.patientId,d.doctor.doctorId,d.appointmentDate,d.appointmentTime,'C')">Cancel
+                                    Appointment</button>&nbsp;&nbsp;
+                                <button class="btn btn-sm btn-success" (click)="openModifyAppointmentModal(d.patient.patientId)">Modify
+                                    Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modifyAppointmentModal"  [style.display]="modifyAppointmentmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifyAppointmentModalLabel">Modify Appointment</h5>
+                <button type="button" (click)="closeModifyAppointmentModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Schedule ID:</label>
+                        <input type="text" class="form-control" #modifyscheduleID required>
+                        <label>Appointment Date:</label>
+                        <input type="date" class="form-control" #modifyappointmentDate required>
+                        <label>Appointment Time:</label>
+                        <input type="time" class="form-control" #modifyappointmentTime required>
+                        <button class="btn btn-sm btn-primary" type="button"
+                            (click)="modifyAppointment(modifyscheduleID.value,modifyappointmentDate.value,modifyappointmentTime.value)">Modify
+                            Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="getPatientDetailsModal" [style.display]="getPatientDetailmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="getPatientDetailsLabel">Patient Details</h5>
+                <button type="button" (click)="closePatientDetailModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-bottom:15px;">
+                    <div class="col-lg-10" style="padding-right: 0px;">
+                        <input type="text" #patientDetailsID placeholder="Search by Patient ID" style="width: 100%;">
+                    </div>
+                    <div class="col-lg-2" style="padding-left: 5px;">
+                        <button type="button" class="btn btn-sm btn-primary"
+                            (click)="getPatientById(patientDetailsID.value)">View
+                            Patient
+                            Details</button>
+                    </div>
+                </div>
+                <div class="row" id="patientDetailsTable" style="padding-bottom:15px;">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered" style="text-align:center;">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Patient Name</th>
+                                    <th>Patient Password</th>
+                                    <th>Patient Age</th>
+                                    <th>Gender</th>
+                                    <th>Mobile No</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{patient.patientId}}</td>
+                                    <td>{{patient.patientName}}</td>
+                                    <td>{{patient.patientPassword}}</td>
+                                    <td>{{patient.patientAge}}</td>
+                                    <td>{{patient.gender}}</td>
+                                    <td>{{patient.mobileNo}}</td>
+                                    <td>{{patient.emailId}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-xs btn-success" (click)="openModifyPatientModal()">Modify
+                            Patient</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modifyPatientModal" [style.display]="modifyPatientmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifyPatientModalLabel">Modify Patient Details</h5>
+                <button type="button" (click)="closeModifyPatientModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Patient ID:</label>
+                        <input type="text" class="form-control" #modifyPatientId required>
+                        <label>Patient Password:</label>
+                        <input type="password" class="form-control" #modifyPatientPassword required>
+                        <label>Patient Mobile Number:</label>
+                        <input type="text" class="form-control" #modifyPatientmobileNo required>
+                        <label>Patient Email ID:</label>
+                        <input type="email" class="form-control" #modifyPatientemailId required>
+                        <button class="btn btn-sm btn-primary" type="button"
+                            (click)="modifyPatient(modifyPatientId.value,modifyPatientPassword.value,modifyPatientmobileNo.value,modifyPatientemailId.value)">Modify
+                            Patient</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10">
+        <input type="text" placeholder="Search doctor by specialization or name" #specialization style="width: 100%;">
+    </div>
+    <div class="col-lg-2">
+        <button type="button" class="btn btn-sm btn-primary"
+            (click)="getDoctorBySpecializationOrName(specialization.value);">Search Doctors</button>
+    </div>
+    <hr>
+</div>
+<div class="row" style="padding-top: 10px;">
+    <div class="col-lg-4" *ngFor="let d of doctorList" style="padding-bottom: 5px;">
+        <div class="card">
+            <div class="card-header">
+                Dr. {{d.doctorname}}, {{d.gender}}
+            </div>
+            <div class="card-body">
+                <p class="card-text">Specialist in: {{d.specialization}}</p>
+                <p class="card-text">Qualification: {{d.qualification}}</p>
+                <p class="card-text">Email: {{d.emailId}}</p>
+                <p class="card-text">Mobile: {{d.mobileNo}}</p>
+                <p class="card-text">Experience: {{d.experience}}</p>
+                <!--(click)="openFixAppointmentModal(d.doctorId,d.doctorname,d.mobileNo,d.gender,d.emailId,d.specialization,d.qualification,d.fees,d.experience)" -->
+                <button class="btn btn-sm btn-success"
+                    (click)="openFixAppModal(d.doctorId,d.doctorname,d.mobileNo,d.gender,d.emailId,d.specialization,d.qualification,d.fees,d.experience)">Book
+                    now only at Rs.{{d.fees}}!</button>&nbsp;&nbsp;
+                <button class="btn btn-sm btn-success"
+                    (click)="openAddReviewModal(d.doctorId,d.doctorname,d.mobileNo,d.gender,d.emailId,d.specialization,d.qualification,d.fees,d.experience)">Add
+                    a Review</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="fixAppointmentModal" role="dialog" [style.display]="fixAppModalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fixAppointmentModalLabel">Book Appointment</h5>
+                <button type="button" (click)="closeFixAppModal()" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>Patient Name:</label>
+                        <input type="text" class="form-control" #patientName required>
+                        <label>Patient Password:</label>
+                        <input type="password" class="form-control" #patientPassword required>
+                        <label>Patient Age:</label>
+                        <input type="text" class="form-control" #patientAge required>
+                        <label>Patient Gender:</label>
+                        <input type="text" class="form-control" #patientGender required>
+                        <label>Patient Mobile Number:</label>
+                        <input type="text" class="form-control" #patientmobileNo required>
+                        <label>Patient Email ID:</label>
+                        <input type="email" class="form-control" #patientemailId required>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Appointment Date:</label>
+                        <input type="date" class="form-control" #appointmentDate required>
+                        <label>Appointment Time:</label>
+                        <input type="time" class="form-control" #appointmentTime required>
+                        <button class="btn btn-sm btn-primary" style="margin-top: 5px;" type="button"
+                            (click)="fixPatientAppointment(patientName.value,patientPassword.value,patientAge.value,patientGender.value,patientmobileNo.value,patientemailId.value,appointmentDate.value,appointmentTime.value)">Book
+                            Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addReviewModal" [style.display]="addReviewmodalStyle">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addReviewLabel">Add a review</h5>
+                <button type="button"  (click)="closeAddReviewModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Review ID:</label>
+                        <input type="text" class="form-control" #reviewId required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Patient ID:</label>
+                        <input type="text" class="form-control" #reviewPatientId required>
+                        <label>Patient Name:</label>
+                        <input type="text" class="form-control" #reviewPatientName required>
+                        <label>Patient Password:</label>
+                        <input type="password" class="form-control" #reviewPatientPassword required>
+                        <label>Patient Age:</label>
+                        <input type="text" class="form-control" #reviewPatientAge required>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Patient Gender:</label>
+                        <input type="text" class="form-control" #reviewPatientGender required>
+                        <label>Patient Mobile Number:</label>
+                        <input type="text" class="form-control" #reviewPatientmobileNo required>
+                        <label>Patient Email ID:</label>
+                        <input type="email" class="form-control" #reviewPatientemailId required>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Description:</label>
+                        <input type="text" class="form-control" #reviewDescription required>
+                        <label>Rating:</label>
+                        <input type="text" class="form-control" #reviewRating required>
+                        <button class="btn btn-sm btn-primary" style="margin-top: 5px;" type="button"
+                            (click)="addPatientReview(reviewId.value,reviewPatientId.value,reviewPatientName.value,reviewPatientPassword.value,reviewPatientAge.value,reviewPatientGender.value,reviewPatientmobileNo.value,reviewPatientemailId.value,reviewDescription.value,reviewRating.value)">Add
+                            a review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>

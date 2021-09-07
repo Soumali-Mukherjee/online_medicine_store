@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="row" *ngFor="let order of orderTransactionList" style="padding-bottom: 10px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <h5 class="card-header">{{order.orderDate}}</h5>
+                    <div class="card-body">
+                        <p class="card-text">Price: {{order.billAmount}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

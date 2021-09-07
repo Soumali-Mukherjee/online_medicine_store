@@ -1,0 +1,234 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-2" style="float: right;">
+            <button type="button" class="btn btn-link" (click)="openLoginModal()">SignIn</button>/
+            <button type="button" class="btn btn-link" (click)="openUserRegModal()">SignUp</button>
+        </div>
+        <div class="modal" role="dialog" [style.display]="loginModalStyle">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Login Form</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                            (click)="closeLoginModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="form-group">
+                                <label for="uid">Username</label>
+                                <input type=text class="form-control" value="" placeholder=username #uname required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password</label>
+                                <input type=password class="form-control" value="" placeholder=password #pwd required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type=button class="btn btn-primary btn-strech"
+                            (click)="userLogin(uname.value,pwd.value)">SignIn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" role="dialog" [style.display]="regModalStyle">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">User Registration</h4>
+                        <!--<button type="button" class="close" aria-label="Close" (click)="closeUserRegModal()"><span aria-hidden="true">&times;</span></button>-->
+                        <button type="button" class="close" data-dismiss="modal"
+                            (click)="closeUserRegModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="form-group">
+                                <input type=text class="form-control" placeholder=username #uid required>
+                            </div>
+                            <div class="form-group">
+                                <input type=password class="form-control" placeholder=password #pwd1 required>
+                            </div>
+                            <div class="form-group">
+                                <input type=text class="form-control" placeholder=Firstname #fname required>
+                            </div>
+                            <div class="form-group">
+                                <input type=text class="form-control" placeholder=Lastname #lname required>
+                            </div>
+                            <div class="form-group">
+                                <input type=text class="form-control" placeholder="Mobile No." #mobile required>
+                            </div>
+                            <div class="form-group">
+                                <input type=text class="form-control" placeholder=Email #email required>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type=button class="btn btn-primary btn-lg"
+                            (click)="registerUser(uid.value,pwd1.value,fname.value,lname.value,mobile.value,email.value)">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3" style="margin-top: -10px;">
+            <a href="http://localhost:4200/home">
+                <img src="/assets/images/logo.png" style="width: 50%;">
+            </a>
+        </div>
+        <div class="col-lg-5"></div>
+        <div class="col-lg-1" style="padding-top: 10px;">
+            <label style="margin-bottom: 0px;">Doctors</label>
+            <span (click)="navigateTo()" style="color:#007bff;cursor: pointer;"> Consult Online</span>
+        </div>
+        <div class="col-lg-1" style="padding-top:10px;">
+            <label style="margin-bottom: 0px;">Pharmacy</label>
+            <a href="">Buy medicines</a>
+        </div>
+        <div class="col-lg-1" style="padding-top: 10px;">
+           <!-- <img src="..">-->
+            <p id="cartDetails"></p>
+            <span (click)="openCart()" style="color:#007bff;cursor: pointer;">Cart</span>
+
+        </div>
+        <div class="col-lg-1" style="padding-top: 10px;">
+            <!--<img src="..">-->
+            <h5 id="userName"></h5>
+            <span (click)="openPreviousOrder()"  style="color:#007bff;cursor: pointer;">Previous Orders</span>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+    <div class="row" style="padding-top: 15px;">
+        <div class="col-lg-12">
+            <label>
+                <strong> EFFORTLESS ONLINE MEDICINE ORDERS AT Online Medicine Store</strong>
+            </label>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-lg-12">
+            <label>
+                Because ordering medicines online need not be complicated but rather a cakewalk. And at Online Medicine
+                Store we
+                ensure that. All you need to do is:
+            </label>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-lg-12">
+            <label>
+                &nbsp;&nbsp;Browse through our wide variety of products
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                &nbsp;&nbsp;Add products to your cart and complete the payment. Voila!
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                &nbsp;&nbsp;Your order will be on its way to you.
+            </label>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-lg-12">
+            <label>
+                Online Medicine Store is your go-to online pharmacy store for all your medicine needs – be it your
+                regular
+                medications, or over-the-counter (OTC) medicines. We also have a range of products in the personalcare,
+                baby
+                care, health and nutrition, wellness, and lifestyle categories. Come explore ‘everything under the sun’
+                related
+                to healthcare at Online Medicine Store.
+            </label>
+        </div>
+    </div>
+    <!--
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-lg-12">
+            <label>
+        Reasons To Buy Medicine From Online Medicine Store
+        For over 32 years, Online Medicine Store has been providing you with genuine medicines round-the-clock, through
+        24-hour pharmacies. And now through Online Medicine Store, we intend to make your lives easier – by getting your
+        medicines delivered to you. Yes, no more stepping out to get your medicines, no more standing in long queues, no
+        more worrying about the genuineness of medicines, no more sweat! Here are more reasons why you should buy your
+        medicines from Online Medicine Store:
+      </label>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-lg-12">
+            <label>
+        Super-fast deliveries. In select cities, deliveries are done in as less as 1 day Largest pharmacy chain in India
+        with over 3,500 stores Attractive deals on medicines and other FMCG products Get Health Credits on purchases
+        (not applicable on discounted
+        products) Prescriptions can be uploaded directly to place an order Option to consult with a pharmacologist to
+        check medicine interactions Wide range of healthcare products to choose from Only genuine and top-quality
+        products delivered. Apollo
+        Pharmacy - Largest Online Pharmacy In India With more than 3,500 stores in India, Online Medicine Store is not just
+        the largest online pharmacy store in India but in Asia as well. Our pharmacy chain has been operational and been
+        providing genuine
+        quality healthcare products for more than 32 years. Our wide range of products ensures that everything you need
+        related to healthcare, you will find it on our platform. Most Trusted Online Medical Store Of India As pioneers
+        in the healthcare
+        segment, we understand the importance of trust. And that is why, over the years, we worked on building that
+        trust. We ensure that every product sold through our offline/online stores are checked for their authenticity,
+        quality, and compliance
+        with the Central Drugs Standard Control Organization, the national regulatory body for Indian pharmaceuticals
+        and medical devices. 100% Genuine Medicine From Online Medicine Store All medicines/healthcare products sold on Apollo
+        Pharmacy are procured
+        from our sister company - Online Medicine Store, with a reputation of selling only 100% genuine products. The products
+        sold through Online Medicine Store are inspected thoroughly to ensure only genuine products make the cut. We believe
+        that when it comes
+        to medicines, quality and authenticity should never be compromised. Over 3,500 Pharmacy Stores In India Our
+        strong network lets us deliver medicines to every nook and corner of the country. We have more than 3,500
+        pharmacy stores in India
+        catering to all your medicine needs. Our network is so vast that you may find an Online Medicine Store store at every
+        1 km. We are leveraging this vast network to now become an online medical store – by getting these medicines
+        delivered to you.
+        Fastest Home Delivery Of Your Order When it comes to medicines, most of us do not want to take a chance. Which
+        is why most of us prefer going to a store physically to get medicines. But you know what happens at the stores.
+        First, you need
+        to go there physically which means you have to drive/walk/ride for at least 10-15 minutes. Second, you need to
+        wait for your turn which may come after 10-15 minutes. Third, you can only buy the products you are sure about,
+        e.g. prescribed
+        medicines. What if you want to buy an FMCG product but are not sure which one? You cannot expect the pharmacist
+        to give you too many options. Online Medicine Store is the solution to all these. We deliver the medicines to you
+        without you having
+        to step out or wait in the queue to buy medicines. And we give you the option to browse through a variety of
+        non-pharma products to choose from. Are we missing something here? Yes, the time we take to deliver your order.
+        We understand that
+        you may sometimes require medicines in urgency and that is why we assure you the fastest home delivery of your
+        medicines. Also, depending on the city you reside in, medicines can be delivered in as less as 1 hour. Best
+        Pharmacologist Available
+        To Check Medicine Interactions Sometimes, the medicines prescribed by your doctor may react with your existing
+        medications, food, beverage, or supplements. This is known as medicine interaction and may prevent your medicine
+        to perform as expected.
+        Hence, on Online Medicine Store, we offer you an option to consult with a pharmacologist, an expert in medicine
+        interactions, before you make any purchase. Extra Benefits Of Online Medicine Orders When you order medicines at
+        Online Medicine Store, not
+        only do you get your medicines delivered on time and at your doorstep, but you also get additional benefits. You
+        can earn Apollo Health Credits whenever you order medicine online and also when you purchase other non-pharma
+        products (not applicable
+        on discounted products including the ones where coupon codes have been applied). You can use these Health
+        Credits to make more purchases on our platform. And not to forget the discounts and exclusive offers we bring
+        out from time to time.
+        Additional Services I Will Receive Besides purchasing medicines, the additional services you can avail on our
+        platform are doctor consultations, symptom checker, ordering diagnostic tests, and digitization of your health
+        records. These services
+        let you consult with doctors from over 70 specialities, check and understand your symptoms, book diagnostics
+        tests, and converts your physical health records into digital records. With so many services under our umbrella,
+        you wouldn’t need
+        to go anywhere else.
+      </label>
+        </div>
+    </div>-->
+</div>
